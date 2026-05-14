@@ -7,6 +7,7 @@
 [![在线体验](https://img.shields.io/badge/🌐_在线体验-bcefghj.github.io-0ea5e9?style=for-the-badge)](https://bcefghj.github.io/hire-easy/)
 [![说明文档](https://img.shields.io/badge/📄_技术说明书-PDF-ef4444?style=for-the-badge)](https://github.com/bcefghj/hire-easy/raw/main/docs/聘易HireEasy_技术说明书.pdf)
 [![演示PPT](https://img.shields.io/badge/📊_演示PPT-PDF-f97316?style=for-the-badge)](https://github.com/bcefghj/hire-easy/raw/main/docs/聘易HireEasy_演示PPT.pdf)
+[![创意方案](https://img.shields.io/badge/🎨_产品创意方案-PDF-8b5cf6?style=for-the-badge)](https://github.com/bcefghj/hire-easy/raw/main/docs/聘易HireEasy_产品创意方案.pdf)
 [![演示视频](https://img.shields.io/badge/🎬_演示视频-GitHub_Releases-22c55e?style=for-the-badge)](https://github.com/bcefghj/hire-easy/releases/latest)
 
 > **让每家小企业，都有自己的 AI 招聘官。**
@@ -59,7 +60,8 @@
 | 材料 | 说明 | 下载 |
 |------|------|------|
 | 技术说明书 | 105 页完整技术文档，含架构设计、合规分析、测试报告、案例研究 | [📄 PDF](https://github.com/bcefghj/hire-easy/raw/main/docs/聘易HireEasy_技术说明书.pdf) |
-| 演示 PPT | Beamer 风格演示幻灯片 | [📊 PDF](https://github.com/bcefghj/hire-easy/raw/main/docs/聘易HireEasy_演示PPT.pdf) |
+| 演示 PPT | 22 页现代主题 Beamer 演示，含真实产品截图，深色 Navy 风格 | [📊 PDF](https://github.com/bcefghj/hire-easy/raw/main/docs/聘易HireEasy_演示PPT.pdf) |
+| 产品创意方案 | 4 页精美产品介绍 PDF，含截图展示、技术亮点、市场数据 | [🎨 PDF](https://github.com/bcefghj/hire-easy/raw/main/docs/聘易HireEasy_产品创意方案.pdf) |
 | 演示视频 | 5 分钟产品演示 MP4（1080p，含 TTS 语音讲解和字幕） | [🎬 Releases](https://github.com/bcefghj/hire-easy/releases/latest) |
 | 在线 Demo | 可交互的真实产品，无需安装 | [🌐 体验](https://bcefghj.github.io/hire-easy/) |
 
