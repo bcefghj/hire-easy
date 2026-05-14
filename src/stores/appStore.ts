@@ -1,5 +1,10 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import {
+  DEMO_CONVERSATIONS,
+  DEMO_COMPANY_PROFILE,
+  DEMO_INSIGHTS,
+} from '../data/demoData';
 
 export type AgentType = 'jd' | 'screen' | 'interview' | 'compliance';
 export type ViewType = 'dashboard' | 'chat' | 'memory' | 'about';
@@ -33,6 +38,7 @@ interface AppState {
   companyProfile: CompanyProfile;
   hireInsights: HireInsight[];
   isLoading: boolean;
+  demoLoaded: boolean;
 
   setView: (view: ViewType) => void;
   setAgent: (agent: AgentType) => void;
@@ -41,22 +47,37 @@ interface AppState {
   setLoading: (loading: boolean) => void;
   updateCompanyProfile: (profile: Partial<CompanyProfile>) => void;
   addInsight: (insight: Omit<HireInsight, 'id' | 'timestamp'>) => void;
+  loadDemoData: () => void;
+}
+
+function buildDemoMessages(): ChatMessage[] {
+  const base = Date.now() - 3600_000;
+  return DEMO_CONVERSATIONS.map((m, i) => ({
+    ...m,
+    id: `demo-${i}`,
+    timestamp: base + i * 30_000,
+  }));
+}
+
+function buildDemoInsights() {
+  const base = Date.now() - 7200_000;
+  return DEMO_INSIGHTS.map((ins, i) => ({
+    ...ins,
+    id: `insight-${i}`,
+    timestamp: base + i * 600_000,
+  }));
 }
 
 export const useAppStore = create<AppState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       currentView: 'dashboard',
       currentAgent: 'jd',
-      chatHistory: [],
-      companyProfile: {
-        name: '',
-        industry: '',
-        size: '',
-        preferences: '',
-      },
-      hireInsights: [],
+      chatHistory: buildDemoMessages(),
+      companyProfile: DEMO_COMPANY_PROFILE,
+      hireInsights: buildDemoInsights(),
       isLoading: false,
+      demoLoaded: true,
 
       setView: (view) => set({ currentView: view }),
       setAgent: (agent) => set({ currentAgent: agent, currentView: 'chat' }),
@@ -80,7 +101,16 @@ export const useAppStore = create<AppState>()(
             { ...insight, id: crypto.randomUUID(), timestamp: Date.now() },
           ],
         })),
+      loadDemoData: () => {
+        if (get().demoLoaded) return;
+        set({
+          chatHistory: buildDemoMessages(),
+          companyProfile: DEMO_COMPANY_PROFILE,
+          hireInsights: buildDemoInsights(),
+          demoLoaded: true,
+        });
+      },
     }),
-    { name: 'hire-easy-store' },
+    { name: 'hire-easy-store-v2' },
   ),
 );

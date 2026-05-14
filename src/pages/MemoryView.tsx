@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppStore } from '../stores/appStore';
-import { Save, Database, BookOpen, Cpu, FileText } from 'lucide-react';
+import { Save, Database, BookOpen, Cpu, FileText, Lightbulb, TrendingUp, MessageSquare } from 'lucide-react';
 
 export function MemoryView() {
   const { companyProfile, hireInsights, updateCompanyProfile } = useAppStore();
@@ -95,6 +95,40 @@ export function MemoryView() {
           </div>
         ))}
       </div>
+
+      {hireInsights.length > 0 && (
+        <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm mb-8">
+          <h3 className="font-semibold text-gray-900 mb-4">
+            AI 招聘洞察（层 3：自动记忆）
+          </h3>
+          <div className="space-y-3">
+            {hireInsights.map((insight) => {
+              const typeMap = {
+                jd_pattern: { icon: <Lightbulb size={14} />, label: 'JD 模式', color: '#0067ED' },
+                screening_insight: { icon: <TrendingUp size={14} />, label: '筛选洞察', color: '#10B981' },
+                interview_tip: { icon: <MessageSquare size={14} />, label: '面试技巧', color: '#8B5CF6' },
+              };
+              const t = typeMap[insight.type];
+              return (
+                <div key={insight.id} className="flex items-start gap-3 p-3 rounded-lg bg-gray-50/50 border border-gray-100">
+                  <div
+                    className="w-7 h-7 rounded-md flex items-center justify-center mt-0.5 shrink-0"
+                    style={{ backgroundColor: t.color + '15', color: t.color }}
+                  >
+                    {t.icon}
+                  </div>
+                  <div>
+                    <span className="text-xs font-medium px-1.5 py-0.5 rounded" style={{ backgroundColor: t.color + '15', color: t.color }}>
+                      {t.label}
+                    </span>
+                    <p className="text-sm text-gray-700 mt-1">{insight.content}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
         <div className="flex items-center justify-between mb-4">

@@ -3,6 +3,8 @@ import { useAppStore } from '../stores/appStore';
 import { AGENTS } from '../data/agents';
 import { chatCompletion } from '../lib/api';
 import { Send, Sparkles, Loader2, Trash2 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export function ChatView() {
   const {
@@ -101,13 +103,19 @@ export function ChatView() {
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap
+                  className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed
                     ${msg.role === 'user'
-                      ? 'bg-[var(--brand)] text-white rounded-br-md'
-                      : 'bg-white text-gray-800 border border-gray-100 shadow-sm rounded-bl-md'
+                      ? 'bg-[var(--brand)] text-white rounded-br-md whitespace-pre-wrap'
+                      : 'bg-white text-gray-800 border border-gray-100 shadow-sm rounded-bl-md prose prose-sm max-w-none'
                     }`}
                 >
-                  {msg.content}
+                  {msg.role === 'user' ? (
+                    msg.content
+                  ) : (
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {msg.content}
+                    </ReactMarkdown>
+                  )}
                 </div>
               </div>
             ))}
